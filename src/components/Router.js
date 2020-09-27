@@ -11,10 +11,10 @@ import Auth from "routes/Auth";
 import Home from "routes/Home";
 import Profile from "routes/Profile";
 
-const AppRouter = ({ isLoggedin, userObj }) => {
+const AppRouter = ({ isLoggedin, userObj, refreshUser }) => {
   return (
     <Router>
-      {isLoggedin && <Navigation />}
+      {isLoggedin && <Navigation userObj={userObj} />}
       <Switch>
         {isLoggedin ? (
           <>
@@ -22,7 +22,7 @@ const AppRouter = ({ isLoggedin, userObj }) => {
               <Home userObj={userObj} />
             </Route>
             <Route exact path="/profile">
-              <Profile />
+              <Profile userObj={userObj} refreshUser={refreshUser} />
             </Route>
             <Redirect from="*" to="/" />
           </>
